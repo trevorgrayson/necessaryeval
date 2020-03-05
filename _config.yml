@@ -3,17 +3,19 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: necessary eval
 subtitle: ''
-description: ''
+# 'that which must be done or accepted.'
+# an evil that someone believes must be done or accepted because it is necessary to achieve a better outcome
+description: 'because computer science.'
 keywords:
-author: John Doe
+author: trevor grayson
 language: en
 timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://necessaryeval.com
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:

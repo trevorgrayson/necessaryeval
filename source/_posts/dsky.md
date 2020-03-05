@@ -4,9 +4,9 @@ date: 2020-02-27 23:09:23
 tags:
 ---
 
-Let's talk about you.  You're a developer. You work on several projects. You
-use version control, probably git, and you have stuff you need to get done.
-Writing code, in multiple projects. Running, testing, and serving these projects.
+You're a developer. You work on several projects. You use version control, 
+probably git, and you have stuff you need to get done.
+You're writing code, in multiple projects. Running, testing, and serving these projects.
 And you probably even are stumbling through conjuring up some weird incantations
 to get stuff done in the command line.  `dsky` has some solutions for you.
 
@@ -19,30 +19,22 @@ unique task with only a NOUN and a VERB.
 `dsky` is a NOUN VERB language for expressing what you would like to do in your 
 projects.
 
-Read up about the history of [DSKY](https://en.wikipedia.org/wiki/Apollo_Guidance_Computer#DSKY_interface)
-on this anniversary year of Apollo 11!
+Read up about the history of [DSKY](https://en.wikipedia.org/wiki/Apollo_Guidance_Computer#DSKY_interface) on this anniversary year of Apollo 11!
 
 ### NOUNs
 
-Presently NOUNs are exclusively git repos. 
-
-For any command, DSKY will:
-
-* attempt to `cd` into ~/projects/$NOUN
-* if the folder doesn't exist, it will try to go to your `$REPO` and download a 
-project `$NOUN`.
-* if it found the folder, it will attempt to `git fetch` to notify you of 
-updates to the codebase.
+Presently NOUNs are exclusively git repos. `dsky` is a language to express what you
+would like to do in your projects.
 
 ### VERBs
 
 What would you like to do?
 
-* isgo - PROJECT INITIALIZING - in a microservice world, why are you checking things out?
+* `dsky $PROJECT isgo` - PROJECT INITIALIZATION - in a microservice world, context switching is not trivial.
 * Execute anything.
   * `compile`, `test`, `package`, `deploy` projects
-* github - go to the project's github page
-* (e)dit   - cd to the project's directory, and open your favorite `$EDITOR`
+* `github` - go to the project's github page
+* (`e`)dit   - open the project in your favorite `$EDITOR`
 
 #### isgo
 
@@ -62,7 +54,9 @@ this is your "news" update for the project. what have your co-contributors been 
 what weird branch are you on?
 5. command prompt. get to work.
 
-see the `install` section if you want to personalize this a bit better.
+`isgo` will be run automatically before any `$VERB` you specify.
+
+See the `install` section if you want to personalize this a bit better.
 
 #### github
 
@@ -96,15 +90,19 @@ dsky $PROJECT_NAME checkout $TAG
 your `$PATH`.  What's your [$PATH]()? This will work if you have write access 
 to the first directory in your `$PATH`. 
 
-Feel free to `curl` or `wget` it into a different folder.
+Feel free to `curl` or `wget` it into a different folder. 
+
+You may take a look at the script [here](/dsky), or run the following to install it:
 
 ```
 curl necessaryeval.com/dsky > `echo $PATH | cut -d: -f1`/dsky
 ```
 
+<!-- Really, you should use HTTPS to confirm it's coming from, but you shouldn't trust me anyways. -->
+
 ### env variables
 
-Here are some good variables to have set for these projects, or in general.
+Here are some good variables to have set for these projects, and in general.
 
 ```
 export PROJECTS=$HOME/projects
