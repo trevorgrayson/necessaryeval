@@ -2,9 +2,10 @@ server:
 	hexo server
 compile:
 	npm install hexo-cli -g
-generate:
+package:
 	# static files
 	hexo generate
+	cp static/* public/
 
 # hexo deploy
 # hexo new "my post"
