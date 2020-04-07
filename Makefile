@@ -12,7 +12,7 @@ package:
 deploy: package
 	mkdir -p dist
 	tar --transform="s/^public/necessaryeval.com/" -czf  dist/necessaryeval.tar.gz public
-	scp dist/necessaryeval.tar.gz ipsumllc.com:/srv/vhosts/
+	scp dist/necessaryeval.tar.gz necessaryeval.com:/srv/vhosts/
 
 # hexo deploy
 # hexo new "my post"

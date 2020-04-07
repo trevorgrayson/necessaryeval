@@ -9,7 +9,7 @@ function hi {
   PROJECTS=${PROJECTS:=$HOME/projects}
   PRESENT=${PWD##*/}
   # GIT_USER
-  # GIT_ORG=
+  GIT_ORG=retentionscience
   GIT_HOST=git@github.com
   LOCATION=$1
   PROJECT=`echo $1 | cut -d/ -f2`
@@ -24,31 +24,25 @@ function hi {
 
   if [ -d $PROJECTS/$PROJECT ]; then              # project is present in $PROJECTS dir
     cd $PROJECTS/$PROJECT
-    # command -v 'title' && title $PROJECT  # set terminal title, if possible
+    test -n `command -v title` && title $PROJECT  # set terminal title, if possible
     # git status
     return
   fi
 
-  echo $LOCATION
   if [ -n "$REPO" ]; then
-    echo "Getting $PROJECT from $GIT_HOST" # :$GIT_ORG/$PROJECT.git"
+    echo "Getting $PROJECT from $GIT_HOST:$GIT_ORG/$PROJECT.git"
 
     # if test -z $GIT_USER; then
     #     echo "please set $GIT_USER. consider adding the following to ~/.bashrc"
     #     echo "export GIT_USER=\"$USER\""
     # fi
 
-    if [[ "$LOCATION" == *\/* ]]; then 
-      echo "git clone -q '$GIT_HOST:$LOCATION.git'"
-      git clone -q "$GIT_HOST:$LOCATION.git" || echo "$REPO not found, checking $GIT_USER/$PROJECT"
-    else
-      git clone -q "$GIT_HOST:$GIT_ORG/$PROJECT.git" || echo "$REPO not found, checking $GIT_USER/$PROJECT" && \
-      git clone -q "$GIT_HOST:$GIT_USER/$PROJECT.git" || echo "Not found."
-    fi
+    git clone -q "$GIT_HOST:$GIT_ORG/$PROJECT.git" || echo "$REPO not found, checking $GIT_USER/$PROJECT" && \
+    git clone -q "$GIT_HOST:$GIT_USER/$PROJECT.git" || echo "Not found."
 
     test -d $PROJECT && cd $PROJECT || echo "Repo not found" && return 1
 
-    # test -n `command -v title` && title $PROJECT
+    test -n `command -v title` && title $PROJECT
   fi
   return 0
 }
@@ -59,7 +53,7 @@ export REST=$(echo "$@" |cut -d' ' -f 3-)
 if [ -z $1 ]; then
     # help screen
     echo "dsky SUBJECT VERB"
-    exit 0
+    return 0
 fi
 
 # Set NOUN
@@ -72,7 +66,6 @@ fi
 
 hi $NOUN
 
-
 PROJ_DIR="$PROJECTS/$NOUN_ONLY"
 if ! [ -d $PROJ_DIR ]; then
   # not a local ~/project 
@@ -83,8 +76,7 @@ else
   test -f dsky.notes && cat dsky.notes
   git fetch &
 
-  # need to abstract this
-  # test -n `command -v cscope` && (find . -name '*.py' > cscope.files & find . -name '*.rb' >> cscope.files) && cscope -b 
+  (find . -name '*.py' > cscope.files & find . -name '*.rb' >> cscope.files) && cscope -b 
 fi
 
 cd $PROJ_DIR
@@ -122,4 +114,3 @@ isgo )    git status;;
 '' )      git status;;
 * )       make $2;;
 esac
-
