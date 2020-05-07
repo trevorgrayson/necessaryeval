@@ -15,17 +15,17 @@ function hi {
   PROJECT=`echo $1 | cut -d/ -f2`
   REPO=$GIT_HOST:$GIT_ORG/$PROJECT.git
 
-  if [ ! -d $PROJECTS ]; then
+  if [[ ! -d $PROJECTS ]]; then
     mkdir -p $PROJECTS
   fi
   cd $PROJECTS
 
-  if [ -z "$PROJECT" ]; then                      # No $NOUN was provided
+  if [[ -z "$PROJECT" ]]; then                      # No $NOUN was provided
     echo "please provide a project"
     return
   fi
 
-  if [ -d $PROJECTS/$PROJECT ]; then              # project is present in $PROJECTS dir
+  if [[ -d $PROJECTS/$PROJECT ]]; then              # project is present in $PROJECTS dir
     cd $PROJECTS/$PROJECT
     # test -n `command -v title` && title $PROJECT  # set terminal title, if possible
     # git status
@@ -49,14 +49,14 @@ function hi {
 # get remainder of args
 export REST=$(echo "$@" |cut -d' ' -f 3-)
 
-if [ -z $1 ]; then
+if [[ -z $1 ]]; then
     # help screen
     echo "dsky SUBJECT VERB"
     exit 0
 fi
 
 # Set NOUN
-if [ $1 == '.' ]; then
+if [[ $1 == '.' ]]; then
     NOUN=`pwd | rev | cut -d'/' -f1 |rev`
 else
     NOUN=$1
@@ -66,7 +66,7 @@ fi
 hi $NOUN
 
 PROJ_DIR="$PROJECTS/$NOUN_ONLY"
-if ! [ -d $PROJ_DIR ]; then
+if ! [[ -d $PROJ_DIR ]]; then
   # not a local ~/project 
   echo "SUBJECT $NOUN not found."
   exit 0
