@@ -1,6 +1,6 @@
 ---
 title: ENV VARS (Environment Variables)
-date: 2020-02-27 23:09:23
+date: 2021-01-28 23:38:00
 tags: 
 ---
 
