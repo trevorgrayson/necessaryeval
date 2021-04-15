@@ -6,13 +6,14 @@ install:
 
 package:
 	# static files
-	hexo generate
+	mkdir -p public
 	cp static/* public/
+	hexo generate
 
 deploy: package
 	mkdir -p dist
 	tar --transform="s/^public/necessaryeval.com/" -czf  dist/necessaryeval.tar.gz public
-	scp dist/necessaryeval.tar.gz necessaryeval.com:/srv/vhosts/
+	scp dist/necessaryeval.tar.gz cribnot.es:/srv/vhosts/
 
 # hexo deploy
 # hexo new "my post"
